@@ -1,0 +1,8 @@
+#Author: Robert Elliott
+
+
+import json
+
+with open('Lab02.json') as file:
+    data = json.load(file.read())
+    print(data)
