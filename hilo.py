@@ -30,7 +30,7 @@ def main():
     points = Points()
     card.show()
     card.new_card()
-    guess = int(input("Higher or Lower? h/l "))
+    #guess = int(input("Higher or Lower? h/l "))
 """     while play:
         if guess > card.number:
             print("Lower")
