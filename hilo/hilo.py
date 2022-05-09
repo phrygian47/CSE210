@@ -2,9 +2,10 @@ import random as r
 
 class Card():
     def __init__(self):
-        self.number = 10
+        self.number = 0
     
     def new_card(self):
+        self.old_number = self.number
         self.number = r.randint(1,13)
         
     def show(self):
@@ -18,7 +19,7 @@ class Points():
         self.points+=100
         
     def minus_points(self):
-        self.point-=75
+        self.points-=75
     
     def game_over(self):
         if self.points <= 0:
@@ -28,21 +29,26 @@ def main():
     play = True
     card = Card()
     points = Points()
-    card.show()
     card.new_card()
-    #guess = int(input("Higher or Lower? h/l "))
-"""     while play:
-        if guess > card.number:
-            print("Lower")
-            points.minus_points()
-        elif guess < card.number:
-            print("Higher")
-            points.minus_points
-        else:
+    card.show()
+    while play and points.points > 0:
+        guess = input("Higher or Lower? h/l ")
+        card.new_card()
+        if (card.number > card.old_number) and guess.lower() == "h":
             points.add_points()
-        play_again = input("Play again? y/n ")
-        if play_again.lower() == "n":
-            play = False
- """            
+        elif (card.number < card.old_number) and guess.lower() == "l":
+            points.add_points()
+        elif (card.number > card.old_number) and guess.lower() == "l":
+            points.minus_points()
+        elif (card.number < card.old_number) and guess.lower() == "h":
+            points.minus_points()
+        print(f"The card was: {card.number}")
+        print(f"Your score is {points.points}")
+        if points.points > 0:
+            play_again = input("Play again? y/n ")
+            if play_again.lower() == "n":
+                play = False
+        points.game_over()
+          
 if __name__ == "__main__":
     main()
